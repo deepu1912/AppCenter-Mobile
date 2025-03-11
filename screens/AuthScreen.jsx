@@ -49,7 +49,7 @@ export default function AuthScreen ()  {
       if (isLogin) {
         const response = await dispatch(loginUser({email, password})).unwrap();
         await AsyncStorage.setItem('token', response.token);
-        Alert.alert('Success', 'Login Successful');
+        Alert.alert('Success', response.message);
         navigation.navigate('Application');
       } else {
         const response = await dispatch(
@@ -178,7 +178,6 @@ const styles = StyleSheet.create({
   toggleText: {
     marginTop: 15,
     color: '#FFFFFF',
-    textDecorationLine: 'underline',
   },
   errorText: {
     color: 'red',

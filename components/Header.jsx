@@ -4,14 +4,14 @@ import { Avatar, Menu, ActivityIndicator } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../redux/features/authLogoutSlice';
-import { useNavigation } from '@react-navigation/native'; // ✅ Import navigation hook
+import { useNavigation } from '@react-navigation/native'; //Import navigation hook
 
 const Header = () => {
   const [visible, setVisible] = useState(false);
   const [token, setToken] = useState(null);
   const dispatch = useDispatch();
   const { loading, error } = useSelector(state => state.authLogout);
-  const navigation = useNavigation(); // ✅ Get navigation instance
+  const navigation = useNavigation(); // Get navigation instance
 
   useEffect(() => {
     const checkToken = async () => {
@@ -28,7 +28,7 @@ const Header = () => {
       await AsyncStorage.removeItem('token');
       setToken(null);
       setVisible(false);
-      navigation.replace('Auth'); //Redirect to AuthScreen after logout
+      navigation.navigate('Auth'); //Redirect to AuthScreen after logout
     } catch (error) {
       console.error('Logout failed:', error);
     }
@@ -67,12 +67,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 15,
-    paddingTop: 40,
+    paddingTop: 30,
     backgroundColor: '#2C3335',
   },
   title: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
   },
   menu: {
